@@ -1,0 +1,9 @@
+body,html{
+	background-image: url("foto.jpg");
+}
+
+.log{
+	width: 30%;
+	text-align: center;
+	margin: auto auto;
+}
