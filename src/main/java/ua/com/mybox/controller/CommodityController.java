@@ -2,6 +2,8 @@ package ua.com.mybox.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +65,25 @@ public class CommodityController {
 		
 		return "redirect:/commodity";
 	
+	}
+	
+	@RequestMapping(value = "/sort", method = RequestMethod.POST)
+	public String sort(Model model) {
+		List<Commodity> commodities = commodityService.findAll();
+//		commodities.sort((c1, c2) -> c1.getNameOfCommodity().compareTo(c2.getOriginNameOfCommodity()));
+		
+		Collections.sort(commodities, new Comparator<Commodity>() {
+
+			@Override
+			public int compare(Commodity o1, Commodity o2) {
+			
+				return o1.getNameOfCommodity().compareTo(o2.getNameOfCommodity());
+			}
+		});
+		
+		model.addAttribute("commoditiesSort", commodities);
+		System.out.println("sort");
+		return "commodity";
 	}
 	
 	 @RequestMapping(value = "/saveCommodityImage", method = RequestMethod.POST)

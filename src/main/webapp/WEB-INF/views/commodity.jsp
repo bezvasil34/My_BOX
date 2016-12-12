@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
@@ -57,6 +57,17 @@
 
 <c:forEach var="comm" items="${commodities}">
 		${comm.nameOfCommodity } <a href="delete/${comm.id}">delete</a> <img  src="${comm.pathImage }" height="100px" width="100px"><br>
+	</c:forEach>
+	
+	<sf:form action="sort" method="post">
+        <button>Сортувати</button>
+    </sf:form>	
+    
+
+
+
+<c:forEach var="commS" items="${commoditiesSort}">
+		${commS} <a href="updateComm/${commS.id }">Змінити</a><br>
 	</c:forEach>
 
 </body>
